@@ -33,3 +33,22 @@ class BinomialWrapper:
     
     def greater_than_or_equal_to(self, y):
         return stats.binom.sf(y, self.n, self.p) + stats.binom.pmf(y, self.n, self.p)
+
+class PoissonWrapper:
+    def __init__(self, mu):
+        self.mu = mu
+    
+    def equal_to(self, y):
+        return stats.poisson.pmf(y, self.mu)
+    
+    def less_than_or_equal_to(self, y):
+        return stats.poisson.cdf(y, self.mu)
+    
+    def greater_than(self, y):
+        return stats.poisson.sf(y, self.mu)
+    
+    def less_than(self, y):
+        return stats.poisson.cdf(y, self.mu) - stats.poisson.pmf(y, self.mu)
+    
+    def greater_than_or_equal_to(self, y):
+        return stats.poisson.sf(y, self.mu) + stats.poisson.pmf(y, self.mu)
